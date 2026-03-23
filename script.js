@@ -25,7 +25,8 @@ mobileMenu.querySelectorAll("a").forEach(link => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  statusText.innerText = "Sending...";
+ statusText.innerText = data.error;
+console.log(data);
 
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
