@@ -16,6 +16,13 @@ router.post("/contact", async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
+    // 👇 validation (optional but good)
+    if (!name || !email || !message) {
+      return res.status(400).json({
+        error: "All fields are required",
+      });
+    }
+
     const result = await pool.query(
       "INSERT INTO messages (name, email, message) VALUES ($1, $2, $3) RETURNING *",
       [name, email, message]
@@ -25,10 +32,13 @@ router.post("/contact", async (req, res) => {
       success: true,
       data: result.rows[0],
     });
+
   } catch (err) {
-    console.error(err);
+    // 🔥 IMPORTANT DEBUG
+    console.error("FULL ERROR:", err);
+
     res.status(500).json({
-      error: "Database error",
+      error: err.message, // 👈 THIS WILL SHOW REAL ERROR IN FRONTEND
     });
   }
 });
