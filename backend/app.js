@@ -3,12 +3,17 @@ const cors = require("cors");
 
 const app = express();
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
+// Routes
 const routes = require("./routes/contactRoutes");
 app.use("/", routes);
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000 🚀");
+// ✅ IMPORTANT FOR RENDER
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT} 🚀`);
 });
