@@ -1,7 +1,7 @@
 const form = document.getElementById("contactForm");
 const statusText = document.getElementById("status");
 
-const API = "http://127.0.0.1:5000/contact";
+const API = "https://portfolio-hv9c.onrender.com/contact";
 
 // MOBILE MENU
 const menuBtn = document.getElementById("menuBtn");
